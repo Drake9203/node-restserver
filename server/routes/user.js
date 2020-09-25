@@ -2,9 +2,10 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const Usuario = require('../models/user');
+const { verifyToken, verifyRole } = require('../middlewares/auth')
 const app = express();
 
-app.get('/usuario', function(req, res) {
+app.get('/usuario', verifyToken, (req, res) => {
 
     let from = Number(req.query.from || 0);
     let limit = Number(req.query.limit || 5);
@@ -32,7 +33,7 @@ app.get('/usuario', function(req, res) {
 
 })
 
-app.post('/usuario', function(req, res) {
+app.post('/usuario', [verifyToken, verifyRole], function(req, res) {
     let body = req.body;
 
     let user = new Usuario({
@@ -60,7 +61,7 @@ app.post('/usuario', function(req, res) {
 
 });
 
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuario/:id', [verifyToken, verifyRole], function(req, res) {
     let id = req.params.id;
 
     // Funcion de underscore pick para poner cuales son las propiedades que se pueden actualizar
@@ -88,7 +89,7 @@ app.put('/usuario/:id', function(req, res) {
 
 })
 
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', [verifyToken, verifyRole], function(req, res) {
     let id = req.params.id;
     let changeStatus = {
         status: false
