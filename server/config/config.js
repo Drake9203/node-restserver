@@ -23,3 +23,8 @@ process.env.EXPIRE_TOKEN = 60 * 60 * 24 * 30;
 // Semilla de autenticacion
 
 process.env.SEED = process.env.SEED || 'secret_key';
+
+
+// Google Client ID
+
+process.env.CLIENT_ID = process.env.CLIENT_ID || '527580147441-uhkbuth74bhk2f157h7m39rotaecdi39.apps.googleusercontent.com';
