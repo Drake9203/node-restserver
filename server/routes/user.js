@@ -33,9 +33,8 @@ app.get('/usuario', verifyToken, (req, res) => {
 
 })
 
-app.post('/usuario', [verifyToken, verifyRole], function(req, res) {
+app.post('/usuario', [verifyToken, verifyRole], (req, res) => {
     let body = req.body;
-
     let user = new Usuario({
         name: body.name,
         email: body.email,
