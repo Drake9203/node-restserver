@@ -8,7 +8,8 @@ let ProductSchema = new Schema({
     description: { type: String, required: false },
     avalible: { type: Boolean, required: true, default: true },
     category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
-    user: { type: Schema.Types.ObjectId, ref: 'Usuario' }
+    user: { type: Schema.Types.ObjectId, ref: 'Usuario' },
+    img: { type: String, required: false },
 });
 
 module.exports = mongoose.model('Product', ProductSchema);
